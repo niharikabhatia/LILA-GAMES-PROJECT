@@ -33,6 +33,6 @@ def load_all_data(data_dir):
     full_df["player_type"] = full_df["user_id"].apply(
         lambda x: "Human" if "-" in str(x) else "Bot"
     )
-    df["ts"] = pd.to_datetime(df["ts"])
+    full_df["ts"] = pd.to_datetime(full_df["ts"])
     return full_df
   

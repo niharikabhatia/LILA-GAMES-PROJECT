@@ -40,14 +40,15 @@ player_types = st.sidebar.multiselect(
 match_df = match_df[match_df["player_type"].isin(player_types)]
 
 # Timeline
-min_time = match_df["ts"].min()
-max_time = match_df["ts"].max()
+min_time = match_df["ts"].min().to_pydatetime()
+max_time = match_df["ts"].max().to_pydatetime()
 
 time_slider = st.sidebar.slider(
     "Timeline",
     min_value=min_time,
     max_value=max_time,
-    value=max_time
+    value=max_time,
+    format="YYYY-MM-DD HH:mm:ss"
 )
 
 match_df = match_df[match_df["ts"] <= time_slider]
