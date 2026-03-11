@@ -56,15 +56,15 @@ match_df = match_df[match_df["ts"] <= time_slider]
 # Coordinate Mapping
 config = MAP_CONFIG[selected_map]
 
-pxs = []
-pys = []
+px_list = []
+py_list = []
 
 for _, row in match_df.iterrows():
 
     x = row["x"]
     z = row["z"]
 
-    px, py = world_to_minimap(
+    map_x, map_y = world_to_minimap(
         x,
         z,
         config["scale"],
@@ -72,11 +72,11 @@ for _, row in match_df.iterrows():
         config["origin_z"]
     )
 
-    pxs.append(px)
-    pys.append(py)
+    px_list.append(map_x)
+    py_list.append(map_y)
 
-match_df["px"] = pxs
-match_df["py"] = pys
+match_df["px"] = px_list
+match_df["py"] = py_list
 
 # Map Display
 image = Image.open(config["image"])
