@@ -1,5 +1,5 @@
 import streamlit as st
-import plotly.express as px
+import plotly.express as pex
 from PIL import Image
 
 from data_loader import load_all_data
@@ -81,7 +81,7 @@ match_df["py"] = py_list
 # Map Display
 image = Image.open(config["image"])
 
-fig = px.scatter(
+fig = pex.scatter(
     match_df,
     x="px",
     y="py",
@@ -119,7 +119,7 @@ events = match_df[
     )
 ]
 
-event_fig = px.scatter(
+event_fig = pex.scatter(
     events,
     x="px",
     y="py",
@@ -133,7 +133,7 @@ st.plotly_chart(event_fig, use_container_width=True)
 # Heatmap
 st.subheader("Traffic Heatmap")
 
-heatmap = px.density_heatmap(
+heatmap = pex.density_heatmap(
     match_df,
     x="px",
     y="py",
